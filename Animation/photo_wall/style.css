@@ -114,16 +114,16 @@ img:hover {
   transform: rotate(68deg) scale(0.3);
 }
 .p13 {
-  top: -150px;
+  top: 150px;
   left: -250px;
-  -webkit-transform: rotate(18deg) scale(0.1);
-  -moz-transform: rotate(18deg) scale(0.1);
-  transform: rotate(18deg) scale(0.1);
+  -webkit-transform: rotate(48deg) scale(0.3);
+  -moz-transform: rotate(48deg) scale(0.3);
+  transform: rotate(48deg) scale(0.3);
 }
 .p14 {
-  top: -193px;
-  left: 10px;
-  -webkit-transform: rotate(28deg) scale(0.2);
-  -moz-transform: rotate(28deg) scale(0.2);
-  transform: rotate(28deg) scale(0.2);
+  top: -103px;
+  left: 290px;
+  -webkit-transform: rotate(28deg) scale(0.3);
+  -moz-transform: rotate(28deg) scale(0.3);
+  transform: rotate(28deg) scale(0.3);
 }
