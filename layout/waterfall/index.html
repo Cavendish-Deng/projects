@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>瀑布流</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="main">
+    <!-- <div class="box">
+      <div class="pic">
+        <img src="../images/a.jpg">
+      </div>
+    </div> -->
+  </div>
+  <script>
+    window.onload = function () {
+      waterfall('main', 'box')
+    }
+
+    let main = document.querySelector('#main')
+    let fragment = document.createDocumentFragment()
+    const alphabet = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10','11','12','13','14','15','16','a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    alphabet.forEach(item => {
+      let img = new Image()
+      img.src = `../images/${item}.jpg`
+      let pic = document.createElement('div')
+      pic.className = 'pic'
+      pic.appendChild(img)
+      let box = document.createElement('div')
+      box.className = 'box'
+      box.appendChild(pic)
+      fragment.appendChild(box)
+    })
+    main.appendChild(fragment)
+
+    function waterfall(parent, box) {
+      let oParent = document.getElementById(parent)
+      let oBoxs = getByClass(oParent, box)
+      // 计算整个页面的列数，页面宽除以 box 宽
+      let oBoxW = oBoxs[0].offsetWidth;
+      let columns = Math.floor(document.documentElement.clientWidth / oBoxW)
+      // 设置 main 的宽度
+      oParent.style.cssText = `width:${oBoxW * columns}px;margin:0 auto`
+      // 存储一行中所有的高度，然后求出这一行中高度最小的的图片
+      let hArr = []
+      // 核心逻辑
+      oBoxs.forEach((item, index) => {
+        if (index < columns) {
+          hArr.push(item.offsetHeight)
+        } else {
+          let minH = Math.min.apply(null, hArr)
+          // console.log('minH', minH);
+          let minhIndex = getMinhIndex(hArr, minH)
+          item.style.position = 'absolute'
+          item.style.top = minH + 'px'
+          // item.style.left = oBoxW * minhIndex + 'px'
+          item.style.left = oBoxs[minhIndex].offsetLeft + 'px'
+          hArr[minhIndex] += item.offsetHeight;
+        }
+      })
+      // console.log('hArr', hArr);
+    }
+
+    // 获取 parent 下所有类名为 clsName 的元素的数组
+    function getByClass (parent, clsName) {
+      let boxArr = [];
+      let childElements = parent.getElementsByTagName('*')
+      for (let i = 0; i < childElements.length; i++) {
+        if (childElements[i].className == clsName) {
+          boxArr.push(childElements[i])
+        }
+      }
+      return boxArr;
+    }
+
+    function getMinhIndex(array, value) {
+      return array.indexOf(value)
+    }
+
+  </script>
+</body>
+
+</html>
