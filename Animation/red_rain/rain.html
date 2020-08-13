@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>红包雨</title>
+  <link rel="stylesheet" href="rain.css">
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+  <div class="content">
+    <div class="drop"></div>
+  </div>
+</body>
+<script>
+  let $content = $('.content')
+  let initNumber = 0;
+  for (let i = 0; i < 30; i++) {
+    let lefts = Math.floor(Math.random() * 5 + 2);
+    let delay = Math.floor(Math.random() * 5 + 2);
+    initNumber += lefts;
+    let $div = $('<div/>').addClass('drop').css({
+      "left": `${initNumber}%`,
+      "top": `${lefts}%`,
+      "animation-delay": `${delay/10}s`
+    })
+    $content.append($div)
+  }
+</script>
+</html>

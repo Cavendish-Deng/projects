@@ -1,0 +1,32 @@
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.marquee {
+  overflow: hidden;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.content {
+  display: flex;
+}
+
+.list {
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+img {
+  width: 100%
+}
+
+.footer {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}

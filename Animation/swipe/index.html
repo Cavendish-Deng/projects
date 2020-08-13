@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>轮播图</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+  <div class="marquee">
+    <div class="content">
+      <img class="list" src="../images/one.jpg">
+      <img class="list" src="../images/two.jpg">
+      <img class="list" src="../images/three.jpg">
+      <!-- <img class="list" src="../images/four.jpg">
+      <img class="list" src="../images/five.jpg">
+      <img class="list" src="../images/img.jpg"> -->
+    </div>
+  </div>
+  <div class="footer">
+    <button id="prev">
+      << Prev</button>
+        <button id="next">>> Next</button>
+  </div>
+
+  <script>
+    $(() => {
+      console.log('页面加载完');
+      let outerWidth = 600;
+      let outerHeight = 400;
+      let speed = 3;
+      let transitionTime = .3;
+      let initIndex = 0;
+      let timer = null;
+      let $marquee = $('.marquee');
+      let $content = $marquee.find('.content')
+      let $list = $content.find('.list')
+      let listLength = $list.length
+      let contentWidth = outerWidth * listLength;
+      let style = document.styleSheets
+      $marquee.css({
+        "width": `${outerWidth}px`,
+        "height": `${outerHeight}px`
+      })
+      $list.css({
+        "width": `${outerWidth}px`,
+        "height": `${outerHeight}px`
+      })
+      $content.css({
+        "width": `${outerWidth}px`,
+        "height": `${outerHeight}px`,
+        // "animation": `run ${speed * listLength}s linear infinite`
+      })
+      // style[0].insertRule(`
+      //   @keyframes run {
+      //     100% {
+      //       transform: translateX(-${contentWidth}px)
+      //     }
+      //   }
+      // `)
+      let clone = $list.eq(0).clone()
+      $content.append(clone)
+      function autoPlay() {
+        tiemr = setInterval(() => {
+          initIndex++
+          $content.css({
+            "transition": `transform ${transitionTime}s ease`,
+            "transform": `translateX(-${outerWidth * initIndex}px)`
+          })
+          if (initIndex === listLength) {
+            initIndex = 0;
+          }
+        }, speed * 1000)
+      }
+
+      $content[0].addEventListener('transitionend', () => {
+        $content.css({
+          "transition": `none`,
+          "transform": `translateX(-${outerWidth * initIndex}px)`
+        })
+      })
+
+      autoPlay()
+
+      $('#prev').click(() => {
+        timer && clearInterval(timer)
+        if (initIndex === 0) {
+          initIndex = listLength;
+          $content.css({
+            "transition": `none`,
+            "transform": `translateX(-${outerWidth * initIndex}px)`
+          })
+        }
+        initIndex--
+        $content.css({
+          "transition": `transform ${transitionTime}s ease`,
+          "transform": `translateX(-${outerWidth * initIndex}px)`
+        })
+        initIndex === 0 ? initIndex = listLength : '';
+      })
+
+      $('#next').click(() => {
+        timer && clearInterval(timer)
+        initIndex++
+        $content.css({
+          "transition": `transform ${transitionTime}s ease`,
+          "transform": `translateX(-${outerWidth * initIndex}px)`
+        })
+        if (initIndex === listLength) {
+          initIndex = 0;
+        }
+      })
+    })
+  </script>
+</body>
+
+</html>

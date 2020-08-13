@@ -1,0 +1,49 @@
+html, body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.content {
+  position: relative;
+  height: 100%;
+  background-color: #f2f2f2;
+  overflow: hidden;
+}
+.drop {
+  position: absolute;
+  opacity: 0;
+  animation: drops 1s cubic-bezier(0.54, 0.23, 0.77, 0.43) infinite;
+  /* 雨滴 */
+  /* width: 4px;
+  height: 6px;
+  background-color: purple;
+  clip-path: ellipse(10% 30% at 50% 50%);
+  transform: scale(6); */
+
+  /* 红包 */
+  width: 60px;
+  height: 60px;
+  background: url(../images/red_packet.png) no-repeat;
+  background-size: auto 60px;
+}
+
+/* 悬停暂停动画 */
+.drop:hover {
+  animation-play-state: paused;
+}
+
+@keyframes drops {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(10px, 100vh, -3px);
+  }
+}
