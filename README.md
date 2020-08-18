@@ -6,7 +6,7 @@
 
 * [瀑布流](https://quanyideng.gitee.io/works/layout/waterfall/index.html)
 
-* [Canvas 时钟](https://quanyideng.gitee.io/works/canvas/clock/index.html)
+* [Canvas 时钟](https://quanyideng.github.io/projects/canvas/clock/index.html)
 
 * [Vue 京东金融](https://quanyideng.gitee.io/works/jd/dist/index.html)
 
