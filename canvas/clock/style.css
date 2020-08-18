@@ -1,0 +1,13 @@
+#clock {
+  border: 1px solid  #ccc;
+}
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
+.btn {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translate(-50%);
+}

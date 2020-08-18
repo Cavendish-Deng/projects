@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "时光日记本",
+  "backgroundColor": "#26272A",
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "van-transition": "../../dist/transition/index"
+  }
+}

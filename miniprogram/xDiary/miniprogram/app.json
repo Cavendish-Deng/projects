@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/diary/diary",
+    "pages/contact/contact",
+    "pages/edit/edit",
+    "pages/camera/camera",
+    "pages/profile/profile",
+    "pages/garbage/garbage",
+    "pages/about/about",
+    "pages/share/share"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#26272A",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#1AAD19",
+    "borderStyle": "black",
+    "backgroundColor": "#F8F8F8",
+    "list": [
+      {
+        "pagePath": "pages/diary/diary",
+        "iconPath": "image/diary.png",
+        "selectedIconPath": "image/diary-filling.png",
+        "text": "日记"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "iconPath": "image/mine.png",
+        "selectedIconPath": "image/mine-filling.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

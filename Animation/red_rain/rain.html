@@ -11,20 +11,21 @@
   <div class="content">
     <div class="drop"></div>
   </div>
+  
+  <script>
+    let $content = $('.content')
+    let initNumber = 0;
+    for (let i = 0; i < 30; i++) {
+      let lefts = Math.floor(Math.random() * 5 + 2);
+      let delay = Math.floor(Math.random() * 5 + 2);
+      initNumber += lefts;
+      let $div = $('<div/>').addClass('drop').css({
+        "left": `${initNumber}%`,
+        "top": `${lefts}%`,
+        "animation-delay": `${delay/10}s`
+      })
+      $content.append($div)
+    }
+  </script>
 </body>
-<script>
-  let $content = $('.content')
-  let initNumber = 0;
-  for (let i = 0; i < 30; i++) {
-    let lefts = Math.floor(Math.random() * 5 + 2);
-    let delay = Math.floor(Math.random() * 5 + 2);
-    initNumber += lefts;
-    let $div = $('<div/>').addClass('drop').css({
-      "left": `${initNumber}%`,
-      "top": `${lefts}%`,
-      "animation-delay": `${delay/10}s`
-    })
-    $content.append($div)
-  }
-</script>
 </html>

@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "van-tab": "../../dist/tab/index",
+    "van-tabs": "../../dist/tabs/index",
+    "van-collapse": "../../dist/collapse/index",
+    "van-collapse-item": "../../dist/collapse-item/index",
+    "van-swipe-cell": "../../dist/swipe-cell/index",
+    "van-icon": "../../dist/icon/index"
+  },
+  "navigationBarTitleText": "时光日记本",
+  "backgroundColor": "#26272A",
+  "backgroundTextStyle": "light"
+}

@@ -1,0 +1,9 @@
+<view class='wrapper'>
+  <canvas 
+  style="width: 300px; height: 400px;" 
+  canvas-id="shareCanvas" 
+  binderror="canvasIdErrorCallback"></canvas>
+  <view style='width:50%;'>
+    <button type='primary' bindtap='saveSharePhoto'>保存分享图</button>
+  </view>
+</view>

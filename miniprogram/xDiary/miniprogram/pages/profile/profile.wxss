@@ -1,0 +1,47 @@
+.profile-wrapper, .profile-darkmode {
+  width: 100%;
+  background-color: #EDECE8;
+  position: relative;
+}
+.profile-darkmode {
+  background: #26272A;
+}
+.head, .head-drakmode {
+  width: 100%;
+  padding: 60rpx 0 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background: #26272a;
+  transition: background 0.5s ease;
+  -webkit-transition: background 0.5s ease;
+}
+.head-drakmode {
+  background: #7A7E83;
+}
+
+.name button {
+  width: 200rpx;
+  font-size: 12px;
+}
+
+.avatar {
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  border: 8px #fff solid;
+}
+
+.circle {
+  border-radius: 50%;
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.name {
+  width: 100%;
+  height: 60rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}

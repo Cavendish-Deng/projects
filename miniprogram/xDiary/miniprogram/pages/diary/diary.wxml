@@ -1,0 +1,159 @@
+<view class='{{darkMode ? wrapperDarkMode  : wrapperStyle}}'>
+	<view class='tag'>
+		<van-icon name="play" color="#26272A" bind:click="selectTag" size='1.3em' />
+	</view>
+	<!-- 分类选项 -->
+	<van-tabs active="{{ active }}" sticky color="#1AAD19" bind:click="onClick">
+		<van-tab title="日记">
+			<view class=" {{ darkMode ? previewDarkMode : preview}}">
+				<view wx:for="{{diary}}" wx:for-index="idx" wx:key="year">
+					<view class='{{darkMode ? darkYear : year}}' style='padding: 20rpx'>{{item.year}}</view>
+					<view wx:for="{{item.content}}" wx:for-index="idex" wx:for-item="month" wx:key="stamp">
+						<view class="{{ darkMode ? 'dark-month' : 'diary-month' }}">{{month.month}}月</view>
+						<van-swipe-cell id="swipe-cell" right-width="{{ 65 }}" async-close bind:close="onClose" wx:for="{{month.content}}" wx:for-index="diaryId" wx:for-item="content" wx:key="_id" data-id="{{diaryId}}" data-month="{{idex}}" data-year="{{idx}}">
+							<van-cell-group>
+								<view class='{{ darkMode ? listWrapperDark : listWrapper}}' hover-stay-time='70' hover-class='diary-hover' id="{{diaryId}}" data-month="{{idex}}" data-year="{{idx}}" bindtap='readDiary' id="{{diaryId}}">
+									<view class='time'>
+										<view style='font-weight: bold; font-size: 44rpx;'>{{content.day}}</view>
+										<view style=' font-size: 30rpx; color: #C3C3C3'>{{content.week}}</view>
+										<view style=' font-size: 30rpx; color: #C3C3C3'>{{content.clock}}</view>
+									</view>
+									<view class='text-content'>
+										<view class='text'>{{content.content}}</view>
+										<view class='media-icon-wrapper'>
+											<block wx:if="{{content.audio != ''}}">
+												<image class='media-icon' src='../../image/voice.png'></image>
+											</block>
+											<block wx:if="{{content.video != ''}}">
+												<image class='media-icon' src='../../image/video_icon.png'></image>
+											</block>
+										</view>
+									</view>
+									<block wx:if="{{content.images.length !== 0}}">
+										<view style='height: auto; display: flex; align-items: center; justify-content: center;'>
+											<image style='width: 160rpx; height: 160rpx; margin-left: 20rpx;' src="{{content.images[0]}}"></image>
+										</view>
+									</block>
+								</view>
+							</van-cell-group>
+							<view slot="right" class='delete-diary'>
+								<text>删除</text>
+							</view>
+						</van-swipe-cell>
+					</view>
+				</view>
+			</view>
+			<view class='add-btn' style="display:{{ showAddBtn ? showMaskBg : hideMaskBg }}">
+				<view style="left: {{ flag ? closeOption : openOption}}%; opacity: {{flag ? hide : show}}" class='audio' hover-start-time="0" hover-stay-time="70" hover-class='left-hover' bindtap='goEditAudio'>
+					<image src="../../image/audio.png"></image>
+				</view>
+				<view style="left: {{ flag ? closeOption : openOptionMiddle}}%; opacity: {{flag ? hide : show}}" class='video' hover-start-time="0" hover-stay-time="70" hover-class='left-hover' bindtap='goToVideo'>
+					<image src="../../image/video.png"></image>
+				</view>
+				<view style="right: {{ flag ? closeOption : openOptionMiddle}}%; opacity: {{flag ? hide : show}}" class='edit' hover-start-time="0" hover-stay-time="70" hover-class='right-hover' bindtap='goEditEdit'>
+					<image src="../../image/edit.png"></image>
+				</view>
+				<view style="right: {{ flag ? closeOption : openOption}}%; opacity: {{ flag ? hide : show}}" class='photo' hover-start-time="0" hover-stay-time="70" bindtap='goToPhoto' hover-class='right-hover'>
+					<image src="../../image/photo.png"></image>
+				</view>
+				<view class="{{ darkMode ? addDarkMode : addStyle}}" hover-stay-time="80" catchtap='createOption' hover-class='add-hover'>
+					<view class='{{ darkMode ? plusDarkMode : plus}}' style='transform: rotateZ({{ flag ? closeDeg : openDeg}}deg);'></view>
+				</view>
+			</view>
+		</van-tab>
+		<van-tab title="视频">
+			<!-- video list -->
+			<view class=" {{ darkMode ? previewDarkMode : preview}}">
+				<view class='video-list-wrapper' wx:for="{{diary}}" wx:for-index="diaryId" wx:key="*this">
+					<block wx:for="{{item.content}}" wx:for-item="month" wx:key="_id">
+						<block wx:for="{{month.content}}" wx:for-item="content" wx:key="*this" wx:if="{{content.video !== ''}}">
+							<video style='margin-bottom: 4rpx; width: 100%' src='{{content.video}}' bindlongpress='saveVideoToLocal' data-src='{{content.video}}'></video>
+						</block>
+					</block>
+				</view>
+			</view>
+		</van-tab>
+		<van-tab title="相册">
+			<block wx:if='{{hasPhoto && !hasContents}}'>
+				<view class='{{darkMode ? tipDark : tipStyle}}'>
+					<view style='font-size: 40rpx'>什么也没有！</view>
+				</view>
+			</block>
+			<view class="gallery-wrapper" style="background: {{darkMode ? transformColor : greyColor}}">
+				<block wx:for="{{gallery}}" wx:for-item="src" wx:for-index="idx" wx:key="*this">
+					<view class="gallery-item" bindtap="photoPreview" id="{{idx}}" data-src="{{src}}">
+						<image class="gallery-photo" src="{{ src }}" />
+					</view>
+				</block>
+			</view>
+			<!-- <view class="weui-cell" style="flex-direction: column; padding: 0; background: {{darkMode ? transformColor : greyColor}}">
+        <block wx:for="{{diary}}" wx:key="year">
+          <view class='{{darkMode ? darkYear : year}}'>{{item.year}}</view>
+          <view class="page__bd" wx:for="{{item.content}}" wx:for-item="month" wx:key="stamp" wx:if="{{month.hasPhoto}}">
+            <view class="weui-cells__title">{{month.month}}月</view>
+            <view class="weui-cells weui-cells_after-title" style="background:{{ darkMode ? transformColor : whiteColor }}" wx:for="{{month.content}}" wx:key="" wx:for-item="content" wx:if="{{content.images.length > 0}}">
+              <view class="weui-cells__title" style='margin: 0; padding-left:20px'>{{content.week}}{{content.clock}}</view>
+              <view class="weui-cell">
+                <view class="weui-cell__bd">
+                  <view class="weui-uploader">
+                    <view class="weui-uploader__bd">
+                      <view class="weui-uploader__files">
+                        <block wx:for="{{content.images}}" wx:for-item="src" wx:for-index="idx" wx:key="*this">
+                          <view class="weui-uploader__file" bindtap="photoPreview" id="{{idx}}" data-srcarray="{{content.images}}">
+                            <image class="weui-uploader__img" src="{{ src }}" />
+                          </view>
+                        </block>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view> -- -->
+		</van-tab>
+		<van-tab title="录音">
+			<view wx:for="{{diary}}" wx:key="year" style='padding-bottom: 100rpx;background: {{ darkMode ? transformColor : ""}}'>
+				<view wx:if="{{item.hasAudio}}">
+					<view class='{{darkMode ? titleYearDark : titleYear}}'>{{item.year}}</view>
+					<view wx:for="{{item.content}}" wx:for-item="audiomonth" wx:key="stamp" wx:if="{{audiomonth.hasAudio}}">
+						<view class="weui-cells__title" style="margin: 0; padding: 0.77em 20px">{{audiomonth.month}}月</view>
+						<view id='{{audioId}}' wx:for="{{audiomonth.content}}" wx:key="_id" wx:for-item="content" wx:for-index="audioId" class='{{ darkMode ? voiceDarkMode : voiceStyle}}' hover-class='diary-hover' hover-stay-time='70' data-audio='{{content.audio}}' data-playtime='{{content.audioPlayTime}}' bindtap='play' wx:if="{{content.audio != ''}}">
+							<view class='voice-content'>
+								<text>{{content.day}}</text>
+								<image style='width: 16px; height: 16px;' src='../../image/voice.png'></image>
+								<text>{{content.audioPlayTime}}</text>
+							</view>
+						</view>
+					</view>
+				</view>
+				<block wx:if="{{audioControls}}">
+					<view class='{{darkMode ? darkControls : controlsStyle}}'>
+						<block wx:if="{{playing}}">
+							<image src="/image/pause.png" bindtap="pauseVoice"></image>
+						</block>
+						<block wx:else>
+							<image src="/image/play.png" bindtap="playVoice"></image>
+						</block>
+						<view>|</view>
+						<image src="/image/stop.png" bindtap="stopVoice"></image>
+					</view>
+				</block>
+			</view>
+		</van-tab>
+	</van-tabs>
+	<block wx:if="{{showLoadTips}}">
+		<view class='{{ darkMode ? loadDarkMode : loadStyle }}' hover-class='diary-hover'>
+			{{loadTips}}
+		</view>
+	</block>
+	<!-- add option -->
+	<view class='fixed' style="display:{{ flag ? hideMaskBg : showMaskBg }}" bindtap='hideOption'></view>
+	<block wx:if='{{hasContents}}'>
+		<view class='{{darkMode ? tipDark : tipStyle}}'>
+			<view>还没有日记哦！</view>
+			<view>点击下方添加按钮即可写日记！</view>
+		</view>
+	</block>
+</view>

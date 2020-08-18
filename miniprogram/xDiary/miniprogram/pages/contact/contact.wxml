@@ -1,0 +1,8 @@
+<view class='{{ darkMode ? wrapperDark : wrapper }}'>
+  <view class='{{ darkMode ? textDark : text }}'>Tap to talk to me</view>
+  <view class='{{ darkMode ? btnDark : btn }}'>
+    <van-transition show="{{ show }}" custom-class="block" duration="1000" name="fade-down">
+      <button class='{{ darkMode ? darkButton : "" }}' open-type="contact" send-message-title="Shalala" hover-class='{{ darkMode ? hoverDark : hover }}'>what's up</button>
+    </van-transition>
+  </view>
+</view>

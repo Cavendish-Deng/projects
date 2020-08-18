@@ -1,0 +1,8 @@
+page {
+  background-color: #EDECE8;
+  height: 100%;
+  font-size: 32rpx;
+  line-height: 1.6;
+  position: relative;
+  display: flex;
+}

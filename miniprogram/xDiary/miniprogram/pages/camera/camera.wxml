@@ -1,0 +1,60 @@
+
+  <camera class='camera' device-position="back" flash="off" device-position="{{direction}}" binderror="error" style="  display:{{camera}};">
+
+    <cover-view class='comfirm' hover-class='comfirm-hover' hover-stay-time="100" bindtap='Comfirm'>完成拍摄</cover-view> 
+
+    <cover-view class='btn-area'>
+        <cover-view class='head seconds-head' style="opacity: {{showTime ? visible : hidden}}">
+          <cover-view class='icon seconds-left'>{{seconds}}s</cover-view>
+          <cover-view >-|-</cover-view>
+          <cover-view class='icon seconds-right'>10s</cover-view>
+        </cover-view>
+
+      <cover-view class='head'>
+        <cover-view class='icon' style='color: {{photo ? whiteText : defaultText}}' bindtap='switchToPhoto'>拍照</cover-view>
+        <cover-view class='icon' style='color: {{videoBtn ? redText : defaultText}}' bindtap='switchToVideo'>录像</cover-view>
+      </cover-view>
+
+      <cover-view class='footer'>
+        <cover-view class='transform-wrapper' bindtap='change' hover-class='transform-hover'>
+          <cover-image class='transform-image' src='../../image/transform.png'></cover-image>
+        </cover-view>
+
+        <cover-view class='btn-wrapper'>
+          <cover-view 
+            style='display: {{photo ? show : hide}}' 
+            class="btn-photo" 
+            bindtap="takePhoto" 
+            hover-class='btn-hover' 
+            hover-stay-time='60'></cover-view>
+          <cover-view 
+            style='display: {{videoBtn ? show : hide}}' 
+            class="btn-video" 
+            bindtap="startRecord" 
+            hover-class='btn-hover'
+            hover-stay-time='60'></cover-view>
+          <cover-view 
+            style='display: {{videoStopBtn ? show : hide}}' 
+            class="stop-btn-video" 
+            bindtap="stopRecord" 
+            hover-class='btn-hover'
+            hover-stay-time='60'></cover-view>
+        </cover-view>
+
+        <cover-view class='album' hover-class='transform-hover'>
+            <cover-view style='display: {{showPhotoAlbum ? show : hide}}'>
+              <cover-image src='{{currentImgSrc}}' bindtap="photoPreview"></cover-image>
+            </cover-view>
+            <cover-view style='display: {{showVideoAlbum ? show : hide}}'>
+              <cover-image src='../../image/video_album.png' bindtap="videoPreview"></cover-image>
+            </cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+  </camera>
+
+
+<block wx:if="{{video}}">
+  <video id="cameraVideo" class="video" src="{{videosrc}}" objectFit='cover' bindended="videoEnded" controls autoplay show-fullscreen-btn="{{false}}" show-center-play-btn="{{false}}" show-play-btn="{{fasle}}" ></video>
+  <cover-image class='close' src='../../image/close_video.png' bindtap='videoEnded'></cover-image>
+</block>

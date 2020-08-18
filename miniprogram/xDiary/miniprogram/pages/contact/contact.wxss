@@ -1,0 +1,49 @@
+.block {
+  height: 100%;
+  width: 100%;
+  
+}
+.btn-wrapper, .btn-dark {
+  border-radius: 50%;
+  height: 400rpx;
+  width: 400rpx;
+  background: radial-gradient(#000 45%, #fff 80%);
+  background: -webkit-radial-gradient(#000 45%, #fff 80%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-dark {
+  background: radial-gradient(#fff 45%, #000 80%);
+  background: -webkit-radial-gradient(#fff 45%, #000 80%);
+}
+.wrapper, .dark-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.dark-wrapper {
+  background-color: #2f3542;
+}
+.text, .dark-text {
+  color: #2f3542; 
+  font-size: 50rpx
+}
+.dark-text {
+  color: #F8F8F8; 
+}
+.dark-button {
+  background: #2f3542;
+  color: #F8F8F8;
+}
+.hover, .dark-hover {
+  background-color: #2f3542;
+  color: #F8F8F8;
+}
+.dark-hover {
+  background-color: #FFFFFF;
+  color: #2f3542;
+}

@@ -1,0 +1,465 @@
+@import '../../dist/style/weui.wxss';
+.container, .container-dark {
+  flex-direction: column;
+  flex: 1;
+  overflow: none;
+  transition: background 0.5s linear;
+  -webkit-transition: background 0.5s linear;
+}
+
+.preview, .preview-darkmode {
+  position: relative;
+  transition: background 0.5s linear;
+  -webkit-transition: background 0.5s linear;
+}
+
+.preview-darkmode, .container-dark {
+  background-color: #26272a;
+}
+
+.list-wrapper, .list-wrapper-dark {
+  position: relative;
+  display: flex;
+  flex: 1;
+  background: #f8f8f8;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 6rpx 14rpx 0 #C3C3C3;
+}
+.list-wrapper-dark {
+  background: #26272A;
+  color: #7A7E83;
+}
+
+.btn-hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.item, .item-darkmode {
+  text-align: left;
+  flex: 1;
+  display: flex;
+  background: #f8f8f8;
+  border-left: 2px solid #f8f8f8;
+  border-right: 2px solid #f8f8f8;
+}
+
+.item-darkmode {
+  border-left-color: #7a7e83;
+  border-right-color: #26272a;
+  background: #26272a;
+  border-radius: 5px;
+}
+
+.diary-hover {
+  background: #7a7e83;
+}
+
+.content, .content-darkmode {
+  position: relative;
+  flex: 1;
+  background: inherit;
+  padding-bottom: 60rpx;
+}
+
+.content-darkmode {
+  color: #adaaaa;
+}
+
+.text {
+  line-height: 1.5;
+  font-size: 32rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  word-break: break-all;
+}
+
+.time {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 20rpx 10rpx 10rpx;
+  border-right: 4rpx #EDECE8 solid;
+}
+.text-content {
+  position: relative;
+  flex: 1;
+  padding: 14rpx 0 0 20rpx;
+}
+
+.media image {
+  width: 80px;
+  height: 80px;
+}
+
+.bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+image {
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.audio, .video, .edit, .photo {
+  transition: 0.2s ease;
+  -webkit-transition: 0.2s ease;
+  position: absolute;
+  bottom: 50rpx;
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  padding: 0;
+}
+
+.audio {
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  background: #1aad19;
+}
+
+.video {
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  height: 110rpx;
+  width: 110rpx;
+  background: #1296db;
+}
+
+.photo {
+  transform: translateX(50%);
+  -webkit-transform: translateX(50%);
+  background: #d4237a;
+}
+
+.edit {
+  transform: translateX(50%);
+  -webkit-transform: translateX(50%);
+  height: 110rpx;
+  width: 110rpx;
+  background: #eeab1b;
+}
+
+.add, .add-darkmode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 50rpx;
+  left: 50%;
+  transition: 0.2s ease;
+  -webkit-transition: 0.2s ease;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  background: radial-gradient(#000 45%, #fff 80%);
+  background: -webkit-radial-gradient(#000 45%, #fff 80%);
+}
+
+.plus, .plus-darkmode {
+  width: 120rpx;
+  height: 120rpx;
+  transition: 0.2s ease;
+}
+
+.plus:before, .plus:after, .plus-darkmode:before, .plus-darkmode:after {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+}
+
+.plus:before, .plus-darkmode:before {
+  width: 4px;
+  height: 26px;
+}
+
+.plus:after, .plus-darkmode:after {
+  width: 26px;
+  height: 4px;
+}
+
+.plus-darkmode:before, .plus-darkmode:after {
+  background-color: #26272a;
+}
+
+.add-darkmode {
+  background: radial-gradient(#fff 50%, #000 80%);
+  background: -webkit-radial-gradient(#fff 50%, #000 80%);
+}
+
+.add-hover {
+  transition: 0.1s ease;
+  -webkit-transition: 0.1s ease;
+  transform: translateX(-50%) scale(0.6, 0.6);
+  -webkit-transform: translateX(-50%) scale(0.6, 0.6);
+}
+
+.fixed {
+  z-index: 102;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.wrapper {
+  background: #26272a;
+  height: 100%;
+}
+
+.add-btn {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 105;
+}
+
+.right-hover {
+  transition: none;
+  -webkit-transition: none;
+  transform: translateX(50%) scale(0.6, 0.6);
+  -webkit-transform: translateX(50%) scale(0.6, 0.6);
+}
+
+.left-hover {
+  transition: none;
+  -webkit-transition: none;
+  transform: translateX(-50%) scale(0.6, 0.6);
+  -webkit-transform: translateX(-50%) scale(0.6, 0.6);
+}
+
+.photo:before, .photo:after, .video:before, .video:after, .audio:before,
+.audio:after, .edit:before, .edit:after {
+  position: absolute;
+  top: -60%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-size: 30rpx;
+  width: 100rpx;
+  text-align: center;
+  color: #f8f8f8;
+}
+
+.audio:before, .audio:after {
+  content: "录音";
+}
+
+.video:before, .video:after {
+  content: "视频";
+}
+
+.photo:before, .photo:after {
+  content: "拍照";
+}
+
+.edit:before, .edit:after {
+  content: "文字";
+}
+.media-icon-wrapper {
+  position: absolute;
+  bottom: -7px;
+  left: 0;
+}
+.media-icon {
+  height: 13px;
+  width: 14px;
+  margin-left: 20rpx;
+}
+
+.load-more, .load-darkmode {
+  padding: 20rpx;
+  text-align: center;
+}
+
+.load-darkmode {
+  background-color: #26272a;
+  color: #adaaaa;
+}
+
+.option-darkmode {
+  color: #fff;
+  background-color: #26272a;
+}
+
+.video-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.voice {
+  height: 120rpx;
+  width: 100%;
+  background-color: #1aad19;
+  border-radius: 120rpx;
+  display: flex;
+  position: relative;
+  align-items: center;
+}
+.year, .dark-year{
+  padding: 20rpx 40rpx;
+  position: relative;
+  font-size: 38rpx;
+  text-align: center;
+}
+.dark-year {
+  background: #26272A;
+  color: #7A7E83;
+}
+.diary-year, .diary-year-dark {
+  padding: 20rpx 50rpx 0;
+  background: #EDECE8;
+  text-align: center;
+  font-size: 38rpx;
+  position: relative;
+}
+.diary-year-dark {
+  background: #26272A;
+  color: #7A7E83;
+}
+.voice-wrapper, .voice-wrapper-darkmode {
+  font-size: 40rpx;
+  font-weight: bold;
+  padding: 0 40rpx;
+}
+
+.voice-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40rpx 0;
+  border-top: 1px #C3C3C3 solid;
+}
+
+.voice-wrapper-darkmode {
+  color: #fff;
+}
+
+.page-section, .page-section-darkmode {
+  position: fixed;
+  bottom: 20rpx;
+  left: 0;
+  right: 0;
+}
+
+.page-section-darkmode {
+  color: #fff;
+}
+
+.page-buttons {
+  justify-content: center;
+  display: flex;
+}
+
+.body-button {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  border: 2px solid #1aad19;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.noContents, .noContents-dark {
+  position: fixed; 
+  top: 50%; 
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  text-align: center;
+  width: 100%;
+}
+.noContents-dark {
+  color: #7A7E83;
+}
+.datePicker {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.controls, .dark-controls {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 10%;
+  background: #F8F8F8;
+  border-top: 2rpx #C3C3C3 solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  animation: controls 1s ease-out;
+  -webkit-animation: controls 1.5s;
+}
+.dark-controls {
+  background: #7A7E83;
+}
+@keyframes controls {
+  from { transform: translateY(100%) }
+  to { transform: translateY(0) }
+}
+.controls image {
+  width: 80rpx;
+  height: 80rpx;
+}
+.delete-diary {
+  background: #E84C3D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36rpx;
+  color: #EBEFF2;
+  height: inherit;
+  width: 65px;
+  box-shadow:6rpx 6rpx 14rpx 0 #C23A2C;
+}
+.page__bd {
+  width: 100%;
+}
+.dark-month {
+  background: #26272A;
+  color: #7A7E83;
+}
+.diary-month, .dark-month {
+  padding: 20rpx;
+  font-size: 32rpx;
+}
+.tag {
+  position: fixed;
+  z-index: 1000;
+  transform: rotateZ(90deg);
+  -webkit-transform: rotateZ(90deg);
+  top: .5em;
+  left: .1em;
+}
+.gallery-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+.gallery-item {
+  width: 25%;
+  height: 25%;
+}
+.gallery-photo {
+  width: 100%;
+  height: 6em;
+  display: block;
+}

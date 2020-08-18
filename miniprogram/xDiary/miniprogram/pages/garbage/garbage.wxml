@@ -1,0 +1,36 @@
+<view class='{{darkMode ? wrapperDarkMode  : wrapperStyle}}' style='padding: 20rpx;'>
+  <view wx:for="{{diaryList}}" wx:for-index="idx" wx:key="_id">
+    <view class='{{ darkMode ? listWrapperDark : listWrapper}}'>
+        <!-- 时间 -->
+        <view class='time'>
+            <view style='font-weight: bold; font-size: 44rpx;'>{{item.month}}/{{item.day}}</view>
+            <view style=' font-size: 30rpx; color: #C3C3C3'>{{item.week}}</view>
+            <view style=' font-size: 30rpx; color: #C3C3C3'>{{item.clock}}</view>
+        </view>
+        <!-- 内容 -->
+        <view class='text-content'>
+            <view class='text'>{{item.content}}</view>
+            <!-- 录音视频图标 -->
+            <view class='media-icon-wrapper'>
+              <block wx:if="{{item.audio != ''}}">
+                <image class='media-icon' src='../../image/voice.png'></image>
+              </block>
+              <block wx:if="{{item.video !== ''}}">
+                <image class='media-icon' src='../../image/video_icon.png'></image>
+              </block>
+            </view>
+        </view>
+        <!-- 图片 -->
+        <block wx:if="{{item.images.length !== 0}}">
+            <view style='height: auto; display: flex; align-items: center; justify-content: center;'>
+              <image style='width: 160rpx; height: 160rpx; margin-left: 20rpx;' src="{{item.images[0]}}"></image>
+            </view>
+        </block>
+    </view>
+  </view>
+  <block wx:if='{{isNoContent}}'>
+  <view class='nothing'>
+    <text>什么也没有</text>
+  </view>
+  </block>
+</view>

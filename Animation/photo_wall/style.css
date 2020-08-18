@@ -30,8 +30,8 @@ img:hover {
 }
 
 .p1 {
-  top: 200px;
-  left: 300px;
+  top: 150px;
+  left: 250px;
   -webkit-transform: rotate(-5deg) scale(0.3);
   -moz-transform: rotate(-5deg) scale(0.3);
   transform: rotate(-5deg) scale(0.3);

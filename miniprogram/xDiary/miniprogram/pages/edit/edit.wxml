@@ -1,0 +1,101 @@
+<view style="background:{{darkMode}}; height: 100%; width: 100%; position: relative;">
+  <block wx:if='{{editDiary}}'>
+    <view class='{{darkMode ? tagDarkMode : tagStyle}}'>
+      <view style='display: flex; align-items: center; position: relative'>
+        <view>{{selectedItem}}</view>
+        <view class='triangle-tag'>
+          <van-icon name="play" color="#26272A" bind:click="selectTag" size='1.3em' />
+        </view>
+      </view>
+      <view style='flex: 1'></view>
+      <view class='edit-time'>{{time}}</view>
+    </view>
+  </block>
+
+  <view class="wrapper">
+    <block wx:if="{{video}}">
+      <view class="page-body-info">
+        <block wx:if="{{src != ''}}">
+          <video src="{{src}}" objectFit='cover' class="head-video" bindlongpress='deleteVideo'></video>
+        </block>
+      </view>
+    </block>
+
+    <block wx:if="{{photo}}">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <block wx:for="{{imageList}}" wx:key="*this">
+            <view class="weui-uploader__file" data-index="{{index}}">
+              <image class="weui-uploader__img" src="{{item}}" data-src="{{item}}" bindtap="photoPreview" bindlongpress='longPress'></image>
+            </view>
+          </block>
+
+          <block wx:if="{{hide && editDiary}}">
+            <view class="weui-uploader__input-box">
+              <view class="weui-uploader__input" bindtap="chooseImage"></view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+
+    <block wx:if="{{audio}}">
+      <view class="audio-player" bindlongpress='deleteAudio'>
+        <!-- recording -->
+        <block wx:if="{{recording}}">
+          <view class='audio-controls'>
+            <view class='audio-controls' bindtap="stopRecord">
+              <image src="/image/stop.png"></image>
+            </view>
+          </view>
+        </block>
+        <!-- hasRecord -->
+        <block wx:if="{{!recording && hasRecord}}">
+          <view class='audio-controls'>
+            <view wx:if="{{playing}}" class='audio-controls' bindtap="pauseVoice">
+              <image src="/image/pause.png"></image>
+            </view>
+            <view wx:else class='audio-controls' bindtap="playVoice">
+              <image src="/image/play.png"></image>
+            </view>
+            <view class='audio-controls' bindtap="stopVoice">
+              <image src="/image/stop.png"></image>
+            </view>
+          </view>
+        </block>
+        <!-- play time -->
+        <view wx:if="{{recording || playing || hasRecord}}" class="page-body-time" style="color: {{color}}">
+          <view wx:if="{{playing || hasRecord}}" class="time-big">{{formatedPlayTime}}/</view>
+          <view class="time-big">{{formatedRecordTime}}</view>
+        </view>
+      </view>
+    </block>
+
+    <block wx:if="{{hasTextContent}}">
+      <textarea class='textarea' style="color: {{color}}" maxlength='-1' placeholder='{{placeholder}}' auto-height focus='{{focus}}' disabled='{{isDisabled}}' bindblur="bindTextAreaBlur" value='{{inputContent}}' bindinput='saveInputContentToData'></textarea>
+    </block>
+  </view>
+  
+  <block wx:if='{{editDiary}}'>
+    <cover-view class='option' style='background: {{optionbackground}}'>
+      <cover-view class='video {{mideaStyle}}' hover-start-time="0" hover-stay-time="80" hover-class='midea-hover' bindtap='openVideo'>
+        <cover-image src='../../image/video2.png' />
+      </cover-view>
+      <cover-view class='audio {{mideaStyle}}' hover-start-time="0" hover-stay-time="80" hover-class='midea-hover' bindtap='openAudioPannel'>
+        <cover-image src='../../image/audio2.png' />
+      </cover-view>
+      <cover-view class='save {{saveStyle}}' hover-class='{{hoverStyle}}' hover-start-time="0" hover-stay-time="80" bindtap='save'>保存</cover-view>
+      <cover-view class='photo {{mideaStyle}}' hover-start-time="0" hover-stay-time="80" hover-class='midea-hover' bindtap='chooseImage'>
+        <cover-image src='../../image/photo2.png' />
+      </cover-view>
+      <cover-view class='edit {{mideaStyle}}' hover-start-time="0" hover-stay-time="80" hover-class='midea-hover' bindtap='modify'>
+        <cover-image src='../../image/edit2.png' />
+      </cover-view>
+    </cover-view>
+  </block>
+  <!-- <block wx:if='{{!editDiary}}'>
+    <cover-view class='share-btn'>
+      <button type='primary' bindtap='generateShareImg'>保存分享</button>
+    </cover-view>
+  </block> -->
+</view>
