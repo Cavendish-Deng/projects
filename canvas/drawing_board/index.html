@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>画板</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://at.alicdn.com/t/font_2019362_33pcum524pq.js"></script>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+  <div id="actions" class="actions">
+    <svg id="brush" class="icon actived">
+      <use xlink:href="#icon-20pencil"></use>
+    </svg>
+    <svg id="erase" class="icon">
+      <use xlink:href="#icon-si-glyph-erase"></use>
+    </svg>
+    <svg id="clear" class="icon">
+      <use xlink:href="#icon-clear"></use>
+    </svg>
+    <svg id="save" class="icon">
+      <use xlink:href="#icon-icons_save"></use>
+    </svg>
+  </div>
+  <ol class="colors">
+    <li id="black" class="black actived"></li>
+    <li id="red" class="red"></li>
+    <li id="green" class="green"></li>
+    <li id="yellow" class="yellow"></li>
+    <li id="blue" class="blue"></li>
+  </ol>
+  <ol class="sizes">
+    <li id="thin" class="thin actived"></li>
+    <li id="thick" class="thick"></li>
+    <li id="thickplus" class="thickplus"></li>
+  </ol>
+  <script src="index.js"></script>
+</body>
+
+</html>
