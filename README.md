@@ -1,12 +1,6 @@
 # 我的作品集
 
-* [红包雨](https://quanyideng.gitee.io/works/Animation/red_rain/rain.html)
-
-* [照片墙](https://quanyideng.gitee.io/works/Animation/photo_wall/index.html)
-
-* [瀑布流](https://quanyideng.gitee.io/works/layout/waterfall/index.html)
-
-* [Canvas 时钟](https://quanyideng.github.io/projects/canvas/clock/index.html)
+* [在线画板](https://quanyideng.github.io/projects/canvas/drawing_board/index.html)
 
 * [Vue 京东金融](https://quanyideng.gitee.io/works/jd/dist/index.html)
 
