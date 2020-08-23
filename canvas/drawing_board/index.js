@@ -11,8 +11,10 @@ let yellow = document.getElementById('yellow')
 let actions = document.getElementById('actions')
 let thin = document.getElementById('thin')
 let thick = document.getElementById('thick')
-let thickPlus = document.getElementById('thickplus')
 let ctx = canvas.getContext('2d')
+let a = document.createElement('a')
+a.target = '_blank'
+document.body.appendChild(a);
 // 特性检测，检测设备是否事移动设备，若存在触摸事件，则表明是移动设备，否则是PC电脑
 let isMobileDevice = document.body.ontouchstart !== undefined ? true : false
 let usingEraser = false
@@ -21,14 +23,14 @@ let isMouseDown = false
 let previousPoint = nextPoint = { x: undefined, y: undefined }
 // 线条粗细
 let lineWidth = 5
+let penColor = ""
 
 resizeCanvas()
-window.onresize = function () {
+window.onresize = debounce(function () {
   resizeCanvas()
-}
+}, 500)
 
 setCanvasBackground('white')
-
 
 thin.onclick = function () {
   lineWidth = 5
@@ -42,45 +44,41 @@ thick.onclick = function () {
   removeSizeActivedClass()
   thick.classList.add('actived')
 }
-thickPlus.onclick = function () {
-  lineWidth = 15
-  usePen()
-  removeSizeActivedClass()
-  thickPlus.classList.add('actived')
-}
 
 erase.onclick = function () {
   useErase()
 }
+
 brush.onclick = function () {
   usePen()
 }
+
 clear.onclick = function () {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
   // 清楚后记得要重新设置背景颜色
   setCanvasBackground('white')
 }
-save.onclick = function () {
-  let url = canvas.toDataURL("image/pnd")
-  let a = document.createElement('a')
-  document.body.appendChild(a)
-  a.href = url
-  a.download = '我的画板'
-  a.target = '_blank'
+
+save.onclick = function() {
+  a.href = canvas.toDataURL()
+  a.download = '我的画板.png'
   a.click()
+  setCanvasBackground('white')
 }
 
 red.onclick = function () {
-  ctx.fillStyle = 'red'
-  ctx.strokeStyle = 'red'
+  penColor = 'red'
+  ctx.fillStyle = penColor
+  ctx.strokeStyle = penColor
   removeActivedClass('')
   red.classList.add('actived')
   usePen()
 }
 
 green.onclick = function () {
-  ctx.fillStyle = 'green'
-  ctx.strokeStyle = 'green'
+  penColor = 'green'
+  ctx.fillStyle = penColor
+  ctx.strokeStyle = penColor
   removeActivedClass()
   green.classList.add('actived')
   usePen()
@@ -88,8 +86,9 @@ green.onclick = function () {
 }
 
 yellow.onclick = function () {
-  ctx.fillStyle = 'yellow'
-  ctx.strokeStyle = 'yellow'
+  penColor = 'yellow'
+  ctx.fillStyle = penColor
+  ctx.strokeStyle = penColor
   removeActivedClass()
   yellow.classList.add('actived')
   usePen()
@@ -97,8 +96,9 @@ yellow.onclick = function () {
 }
 
 blue.onclick = function () {
-  ctx.fillStyle = 'blue'
-  ctx.strokeStyle = 'blue'
+  penColor = 'blue'
+  ctx.fillStyle = penColor
+  ctx.strokeStyle = penColor
   removeActivedClass()
   blue.classList.add('actived')
   usePen()
@@ -106,12 +106,12 @@ blue.onclick = function () {
 }
 
 black.onclick = function () {
-  ctx.fillStyle = 'black'
-  ctx.strokeStyle = 'black'
+  penColor = 'black'
+  ctx.fillStyle = penColor
+  ctx.strokeStyle = penColor
   removeActivedClass()
   black.classList.add('actived')
   usePen()
-
 }
 
 if (isMobileDevice) {
@@ -127,7 +127,6 @@ if (isMobileDevice) {
     }
   }
   canvas.ontouchmove = function (e) {
-    // console.log('touch move');
     let [x, y] = [e.touches[0].clientX, e.touches[0].clientY]
     if (isMouseDown) {
       if (usingEraser) {
@@ -181,6 +180,25 @@ function resizeCanvas() {
   let pageWidth = document.documentElement.clientWidth
   canvas.height = pageHeight
   canvas.width = pageWidth
+  setCanvasBackground('white')
+  console.log('penColor', penColor);
+  switch(penColor) {
+    case 'blue' :
+      ctx.fillStyle = penColor
+      ctx.strokeStyle = penColor
+    case 'red' :
+      ctx.fillStyle = penColor
+      ctx.strokeStyle = penColor
+    case 'yellow' :
+      ctx.fillStyle = penColor
+      ctx.strokeStyle = penColor
+    case 'green' :
+      ctx.fillStyle = penColor
+      ctx.strokeStyle = penColor
+    case 'black' :
+      ctx.fillStyle = penColor
+      ctx.strokeStyle = penColor
+  }
 }
 
 function drawLine(previousPoint = {}, nextPoint = {}) {
@@ -214,12 +232,35 @@ function removeActivedClass() {
 function removeSizeActivedClass() {
   thin.classList.remove('actived')
   thick.classList.remove('actived')
-  thickPlus.classList.remove('actived')
 }
 
 function setCanvasBackground(color) {
   // 设置背景颜色
   ctx.fillStyle = color;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
+}
+
+function debounce (fn, delay=1000, immediate=false) {
+  let timer = null
+  return function() {
+      // 修正this指向和event对象能够被传递,
+      // 保证不使用debounce函数时与使用debounce函数时 的this指向相同和参数能够被传递
+      const context = this
+      const args = arguments
+
+      timer && clearTimeout(timer);
+      
+      if(immediate) {
+          // 如果已经执行过，不再执行
+          let callNow = !timer
+          timer = setTimeout(function(){
+              timer = null
+          }, delay)
+          callNow && fn.apply(context, args)
+      } else {
+          timer = setTimeout(function() {
+              fn.apply(context, args)
+          }, delay)
+      }
+  }
 }
