@@ -2,6 +2,8 @@
 
 * [在线画板](https://quanyideng.github.io/projects/canvas/drawing_board/index.html)
 
+* [vuelog 博客](https://quanyideng.github.io/projects/vue/vuelog/index.html)
+
 * [Vue 京东金融](https://quanyideng.gitee.io/works/jd/dist/index.html)
 
   ![jd_qrcode](https://i.loli.net/2020/08/17/81Zdlf3PVwUA5Rq.png)
